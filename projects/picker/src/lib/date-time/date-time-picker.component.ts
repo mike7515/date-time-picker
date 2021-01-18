@@ -313,7 +313,7 @@ export class OwlDateTimeComponent<T> extends OwlDateTime<T>
         this.defaultScrollStrategy = defaultScrollStrategy;
     }
 
-    public ngOnInit() {}
+    public ngOnInit() { }
 
     public ngOnDestroy(): void {
         this.close();
@@ -419,7 +419,6 @@ export class OwlDateTimeComponent<T> extends OwlDateTime<T>
          * */
         if (
             this.pickerMode !== 'dialog' &&
-            this.pickerType === 'calendar' &&
             ((this.selectMode === 'single' && this.selected) ||
                 (this.selectMode === 'rangeFrom' && this.selecteds[0]) ||
                 (this.selectMode === 'rangeTo' && this.selecteds[1]) ||
@@ -520,7 +519,6 @@ export class OwlDateTimeComponent<T> extends OwlDateTime<T>
             this.confirmSelectedChange.emit(this.selecteds);
         }
 
-        this.close();
         return;
     }
 

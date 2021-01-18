@@ -12,7 +12,8 @@ $cdk-overlay-dark-backdrop-background: rgba(0, 0, 0, 0.288);
 $backdrop-animation-duration: 400ms !default;
 $backdrop-animation-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1) !default;
 
-.cdk-overlay-container, .cdk-global-overlay-wrapper {
+.cdk-overlay-container,
+.cdk-global-overlay-wrapper {
   // Disable events from being captured on the overlay container.
   pointer-events: none;
 
@@ -93,11 +94,13 @@ $backdrop-animation-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1) !default;
 }
 
 .cdk-overlay-transparent-backdrop {
+
   // Note: as of Firefox 57, having the backdrop be `background: none` will prevent it from
   // capturing the user's mouse scroll events. Since we also can't use something like
   // `rgba(0, 0, 0, 0)`, we work around the inconsistency by not setting the background at
   // all and using `opacity` to make the element transparent.
-  &, &.cdk-overlay-backdrop-showing {
+  &,
+  &.cdk-overlay-backdrop-showing {
     opacity: 0;
   }
 }
@@ -144,8 +147,8 @@ $backdrop-animation-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1) !default;
   display: block;
   padding: 1.5em;
   box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2),
-  0px 24px 38px 3px rgba(0, 0, 0, 0.14),
-  0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+    0px 24px 38px 3px rgba(0, 0, 0, 0.14),
+    0px 9px 46px 8px rgba(0, 0, 0, 0.12);
   border-radius: 2px;
   overflow: auto;
   background: #fff;
@@ -202,7 +205,8 @@ $theme-color: #3f51b5;
       padding: 0 .8em;
 
       &:hover {
-        background-color: rgba(0, 0, 0, .12);;
+        background-color: rgba(0, 0, 0, .12);
+        ;
       }
     }
   }
@@ -318,21 +322,21 @@ $theme-color: #3f51b5;
   .owl-dt-calendar-cell-disabled {
     cursor: default;
 
-    & > .owl-dt-calendar-cell-content:not(.owl-dt-calendar-cell-selected) {
+    &>.owl-dt-calendar-cell-content:not(.owl-dt-calendar-cell-selected) {
       color: rgba(0, 0, 0, .4);
     }
 
-    & > .owl-dt-calendar-cell-content.owl-dt-calendar-cell-selected {
+    &>.owl-dt-calendar-cell-content.owl-dt-calendar-cell-selected {
       opacity: .4;
     }
 
-    & > .owl-dt-calendar-cell-today:not(.owl-dt-calendar-cell-selected) {
+    &>.owl-dt-calendar-cell-today:not(.owl-dt-calendar-cell-selected) {
       border-color: rgba(0, 0, 0, .2);
     }
   }
 
-  .owl-dt-calendar-cell-active:focus > .owl-dt-calendar-cell-content:not(.owl-dt-calendar-cell-selected),
-  :not(.owl-dt-calendar-cell-disabled):hover > .owl-dt-calendar-cell-content:not(.owl-dt-calendar-cell-selected) {
+  .owl-dt-calendar-cell-active:focus>.owl-dt-calendar-cell-content:not(.owl-dt-calendar-cell-selected),
+  :not(.owl-dt-calendar-cell-disabled):hover>.owl-dt-calendar-cell-content:not(.owl-dt-calendar-cell-selected) {
     background-color: rgba(0, 0, 0, .04);
   }
 
@@ -390,33 +394,9 @@ $theme-color: #3f51b5;
 }
 
 .owl-dt-timer-divider {
-  display: inline-block;
-  align-self: flex-end;
-  position: absolute;
-  width: .6em;
   height: 100%;
-  left: -.3em;
-
-  &:before,
-  &:after {
-    content: '';
-    display: inline-block;
-    width: .35em;
-    height: .35em;
-    position: absolute;
-    left: 50%;
-    border-radius: 50%;
-    transform: translateX(-50%);
-    background-color: currentColor;
-  }
-
-  &:before {
-    top: 35%;
-  }
-
-  &:after {
-    bottom: 35%;
-  }
+  display: flex;
+  align-items: center;
 }
 
 .owl-dt-control-button {
@@ -452,7 +432,7 @@ $theme-color: #3f51b5;
     transition: background-color 100ms linear;
   }
 
-  &:hover > .owl-dt-control-button-content {
+  &:hover>.owl-dt-control-button-content {
     background-color: rgba(0, 0, 0, .12);
   }
 
@@ -492,8 +472,8 @@ $theme-color: #3f51b5;
   position: relative;
   width: 18.5em;
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, .2),
-  0 8px 10px 1px rgba(0, 0, 0, .14),
-  0 3px 14px 2px rgba(0, 0, 0, .12);
+    0 8px 10px 1px rgba(0, 0, 0, .14),
+    0 3px 14px 2px rgba(0, 0, 0, .12);
 
   .owl-dt-calendar,
   .owl-dt-timer {
@@ -548,32 +528,6 @@ $theme-color: #3f51b5;
   }
 }
 
-.owl-dt-container-buttons {
-  display: flex;
-  width: 100%;
-  height: 2em;
-  color: $theme-color;
-}
-
-.owl-dt-container-control-button {
-  font-size: 1em;
-  width: 50%;
-  height: 100%;
-  border-radius: 0;
-
-  .owl-dt-control-button-content {
-    height: 100%;
-    width: 100%;
-    transition: background-color 100ms linear;
-  }
-
-  &:hover {
-    .owl-dt-control-button-content {
-      background-color: rgba(0, 0, 0, .1);
-    }
-  }
-}
-
 .owl-dt-container-info {
   padding: 0 .5em;
   cursor: pointer;
@@ -624,7 +578,8 @@ $theme-color: #3f51b5;
       padding: .5em;
     }
 
-    &:focus, &:hover {
+    &:focus,
+    &:hover {
       .owl-dt-control-button-content {
         background: $theme-color;
         color: #ffffff;
@@ -652,11 +607,11 @@ $theme-color: #3f51b5;
     outline: none;
   }
 
-  &:focus > .owl-dt-control-content {
+  &:focus>.owl-dt-control-content {
     background-color: rgba(0, 0, 0, .12);
   }
 
-  &:not(:-moz-focusring):focus > .owl-dt-control-content {
+  &:not(:-moz-focusring):focus>.owl-dt-control-content {
     box-shadow: none;
   }
 }

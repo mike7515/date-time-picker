@@ -152,19 +152,6 @@ export class OwlDateTimeContainerComponent<T>
             : '';
     }
 
-    /**
-     * Cases in which the control buttons show in the picker
-     * 1) picker mode is 'dialog'
-     * 2) picker type is NOT 'calendar' and the picker mode is NOT 'inline'
-     * */
-    get showControlButtons(): boolean {
-        return (
-            this.picker.pickerMode === 'dialog' ||
-            (this.picker.pickerType !== 'calendar' &&
-                this.picker.pickerMode !== 'inline')
-        );
-    }
-
     get containerElm(): HTMLElement {
         return this.elmRef.nativeElement;
     }
@@ -197,13 +184,13 @@ export class OwlDateTimeContainerComponent<T>
         return this.picker.pickerMode === 'inline' ? '' : 'enter';
     }
 
-    constructor( private cdRef: ChangeDetectorRef,
-                  private elmRef: ElementRef,
-                  private pickerIntl: OwlDateTimeIntl,
-                 @Optional() private dateTimeAdapter: DateTimeAdapter<T> ) {
+    constructor(private cdRef: ChangeDetectorRef,
+        private elmRef: ElementRef,
+        private pickerIntl: OwlDateTimeIntl,
+        @Optional() private dateTimeAdapter: DateTimeAdapter<T>) {
     }
 
-    public ngOnInit() {}
+    public ngOnInit() { }
 
     public ngAfterContentInit(): void {
         this.initPicker();

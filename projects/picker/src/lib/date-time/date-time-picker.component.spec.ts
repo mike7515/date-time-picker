@@ -256,141 +256,6 @@ describe('OwlDateTimeComponent', () => {
                 ).toBeNull();
             }));
 
-            it('should close popup panel when cancel button clicked', fakeAsync(() => {
-                testComponent.dateTimePicker.open();
-                fixture.detectChanges();
-                flush();
-                expect(testComponent.dateTimePicker.opened).toBe(
-                    true,
-                    'Expected dateTimePicker to be opened.'
-                );
-
-                let containerDebugElement = fixture.debugElement.query(
-                    By.directive(OwlDateTimeContainerComponent)
-                );
-                containerElement = containerDebugElement.nativeElement;
-
-                let btns = containerElement.querySelectorAll(
-                    '.owl-dt-container-control-button'
-                );
-                dispatchMouseEvent(btns[0], 'click'); // 'Cancel' button
-                fixture.detectChanges();
-                flush();
-
-                expect(testComponent.dateTimePicker.opened).toBe(
-                    false,
-                    'Expected dateTimePicker to be closed.'
-                );
-            }));
-
-            it('should close popup panel and not update input value when cancel button clicked', fakeAsync(() => {
-                testComponent.dateTimePicker.open();
-                fixture.detectChanges();
-                flush();
-                expect(testComponent.dateTimePicker.opened).toBe(
-                    true,
-                    'Expected dateTimePicker to be opened.'
-                );
-
-                let containerDebugElement = fixture.debugElement.query(
-                    By.directive(OwlDateTimeContainerComponent)
-                );
-                containerElement = containerDebugElement.nativeElement;
-
-                let monthCell = containerElement.querySelector(
-                    '[aria-label="January 2, 2020"]'
-                );
-                (monthCell as HTMLElement).click();
-                fixture.detectChanges();
-
-                let btns = containerElement.querySelectorAll(
-                    '.owl-dt-container-control-button'
-                );
-                dispatchMouseEvent(btns[0], 'click'); // 'Cancel' button
-                fixture.detectChanges();
-                flush();
-
-                expect(testComponent.dateTimePicker.opened).toBe(
-                    false,
-                    'Expected dateTimePicker to be closed.'
-                );
-                expect(testComponent.dateTimePickerInput.value).toEqual(
-                    new Date(2020, JAN, 1)
-                ); // not update to clicked value
-            }));
-
-            it('should update input value to pickerMoment value and close popup panel when set button clicked', fakeAsync(() => {
-                testComponent.dateTimePicker.open();
-                fixture.detectChanges();
-                flush();
-                expect(testComponent.dateTimePicker.opened).toBe(
-                    true,
-                    'Expected dateTimePicker to be opened.'
-                );
-
-                let containerDebugElement = fixture.debugElement.query(
-                    By.directive(OwlDateTimeContainerComponent)
-                );
-                containerElement = containerDebugElement.nativeElement;
-                expect(
-                    containerDebugElement.componentInstance.pickerMoment
-                ).toEqual(new Date(2020, JAN, 1));
-
-                let btns = containerElement.querySelectorAll(
-                    '.owl-dt-container-control-button'
-                );
-                dispatchMouseEvent(btns[1], 'click'); // 'Set' button
-                fixture.detectChanges();
-                flush();
-
-                expect(testComponent.dateTimePicker.opened).toBe(
-                    false,
-                    'Expected dateTimePicker to be closed.'
-                );
-                expect(testComponent.dateTimePickerInput.value).toEqual(
-                    new Date(2020, JAN, 1)
-                );
-            }));
-
-            it('should update input value to clicked date value and close popup panel when set button clicked', fakeAsync(() => {
-                testComponent.dateTimePicker.open();
-                fixture.detectChanges();
-                flush();
-                expect(testComponent.dateTimePicker.opened).toBe(
-                    true,
-                    'Expected dateTimePicker to be opened.'
-                );
-
-                let containerDebugElement = fixture.debugElement.query(
-                    By.directive(OwlDateTimeContainerComponent)
-                );
-                containerElement = containerDebugElement.nativeElement;
-                expect(
-                    containerDebugElement.componentInstance.pickerMoment
-                ).toEqual(new Date(2020, JAN, 1));
-
-                let monthCell = containerElement.querySelector(
-                    '[aria-label="January 2, 2020"]'
-                );
-                (monthCell as HTMLElement).click();
-                fixture.detectChanges();
-
-                let btns = containerElement.querySelectorAll(
-                    '.owl-dt-container-control-button'
-                );
-                dispatchMouseEvent(btns[1], 'click'); // 'Set' button
-                fixture.detectChanges();
-                flush();
-
-                expect(testComponent.dateTimePicker.opened).toBe(
-                    false,
-                    'Expected dateTimePicker to be closed.'
-                );
-                expect(testComponent.dateTimePickerInput.value).toEqual(
-                    new Date(2020, JAN, 2)
-                );
-            }));
-
             it('should set startAt fallback to input value', () => {
                 expect(testComponent.dateTimePicker.startAt).toEqual(
                     new Date(2020, JAN, 1)
@@ -470,26 +335,6 @@ describe('OwlDateTimeComponent', () => {
                         ).toBe('1/1/2020');
                     }
                 });
-
-                it('should NOT have any container control button', fakeAsync(() => {
-                    testComponent.dateTimePicker.open();
-                    fixture.detectChanges();
-                    flush();
-                    expect(testComponent.dateTimePicker.opened).toBe(
-                        true,
-                        'Expected dateTimePicker to be opened.'
-                    );
-
-                    let containerDebugElement = fixture.debugElement.query(
-                        By.directive(OwlDateTimeContainerComponent)
-                    );
-                    containerElement = containerDebugElement.nativeElement;
-                    let btns = containerElement.querySelectorAll(
-                        '.owl-dt-container-control-button'
-                    );
-
-                    expect(btns.length).toBe(0);
-                }));
 
                 it('should update input value to clicked date value and close popup panel when date cell is clicked', fakeAsync(() => {
                     testComponent.dateTimePicker.open();
@@ -615,26 +460,6 @@ describe('OwlDateTimeComponent', () => {
                         ).toBe('12:00 AM');
                     }
                 });
-
-                it('should have container control buttons', fakeAsync(() => {
-                    testComponent.dateTimePicker.open();
-                    fixture.detectChanges();
-                    flush();
-                    expect(testComponent.dateTimePicker.opened).toBe(
-                        true,
-                        'Expected dateTimePicker to be opened.'
-                    );
-
-                    let containerDebugElement = fixture.debugElement.query(
-                        By.directive(OwlDateTimeContainerComponent)
-                    );
-                    containerElement = containerDebugElement.nativeElement;
-                    let btns = containerElement.querySelectorAll(
-                        '.owl-dt-container-control-button'
-                    );
-
-                    expect(btns.length).toBe(2);
-                }));
             });
         });
 
